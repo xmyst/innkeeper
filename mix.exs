@@ -44,7 +44,7 @@ defmodule Innkeeper.MixProject do
   defp package do
     [
       licenses: ["ISC"],
-      links: %{"Source Code" => @source_url}
+      links: %{"Source code" => @source_url}
     ]
   end
 end
