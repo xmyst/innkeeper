@@ -1,20 +1,25 @@
 defmodule Innkeeper.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/xmyst/innkeeper"
+
   def project do
     [
       app: :innkeeper,
+      name: "Innkeeper",
       version: "0.1.0",
+      description: "Innkeeper creates and owns your ETS tables",
+      source_url: @source_url,
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      docs: docs()
+      docs: docs(),
+      package: package()
     ]
   end
 
   def application do
     [
-      extra_applications: [:logger],
       mod: {Innkeeper.Application, []}
     ]
   end
@@ -29,8 +34,16 @@ defmodule Innkeeper.MixProject do
 
   defp docs do
     [
-      main: "readme",
-      extras: ["README.md"]
+      authors: ["Stas Miasnikoŭ <stas@miasnikou.name>"],
+      extras: ["README.md"],
+      main: "readme"
+    ]
+  end
+
+  defp package do
+    [
+      licenses: ["ISC"],
+      links: %{"Source Code" => @source_url}
     ]
   end
 end
