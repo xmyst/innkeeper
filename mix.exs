@@ -35,8 +35,9 @@ defmodule Innkeeper.MixProject do
   defp docs do
     [
       authors: ["Stas Miasnikoŭ <stas@miasnikou.name>"],
-      extras: ["README.md"],
-      main: "readme"
+      extras: ["CHANGELOG.md", "README.md"],
+      main: "readme",
+      skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
     ]
   end
 
