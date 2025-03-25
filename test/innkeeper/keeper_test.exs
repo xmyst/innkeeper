@@ -16,7 +16,7 @@ defmodule Innkeeper.KeeperTest do
     start_link_supervised!(@keeper_mod_spec)
   end
 
-  test "single table" do
+  test "1 table" do
     compiler_options ignore_module_conflict: true do
       defmodule M do
         use Innkeeper
@@ -29,7 +29,9 @@ defmodule Innkeeper.KeeperTest do
     assert M in :ets.all()
   end
 
-  test "duplicate table" do
+  # Do not display the crash log.
+  @tag :capture_log
+  test "dup table" do
     compiler_options ignore_module_conflict: true do
       defmodule M do
         use Innkeeper
@@ -40,10 +42,8 @@ defmodule Innkeeper.KeeperTest do
     end
 
     %{message: message} =
-      assert_raise RuntimeError, fn ->
-        start_link_supervised!(@keeper_mod_spec)
-      end
+      assert_raise RuntimeError, fn -> start_link_supervised!(@keeper_mod_spec) end
 
-    assert String.contains?(message, "** (ArgumentError)")
+    assert message =~ "** (ArgumentError)"
   end
 end

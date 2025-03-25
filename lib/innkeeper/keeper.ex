@@ -32,16 +32,15 @@ defmodule Innkeeper.Keeper do
         fn {name, _loc, _opts} -> name end,
         fn {_name, {file, line}, _opts} -> "#{file}:#{line}" end
       )
+      # match?([_, _ | _], locs) is a much faster version of length(locs) > 1.
       |> Enum.filter(fn {_name, locs} -> match?([_, _ | _], locs) end)
 
     case multi_definitions do
       [{name, locations} | _] ->
         raise ArgumentError,
-          message: """
-          a table may be defined exactly once, table #{name} is defined at:
-
-          #{Enum.join(locations, "\n")}
-          """
+          message:
+            "Tables must be defined exactly once, table #{name} is defined at:\n\n" <>
+              Enum.join(locations, "\n")
 
       [] ->
         Enum.map(tables, fn {name, _loc, opts} -> {name, opts} end)

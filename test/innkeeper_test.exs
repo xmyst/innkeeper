@@ -4,7 +4,7 @@ defmodule InnkeeperTest do
 
   doctest Innkeeper
 
-  test "no declarations" do
+  test "no decls" do
     compiler_options ignore_module_conflict: true do
       defmodule M do
         use Innkeeper
@@ -14,8 +14,8 @@ defmodule InnkeeperTest do
     assert [] = M.__ets_tables__()
   end
 
-  describe "declaration" do
-    test "w/o options" do
+  describe "1 decl" do
+    test "w/o opts" do
       name = :test
       file = __ENV__.file
 
@@ -29,7 +29,7 @@ defmodule InnkeeperTest do
       assert [{^name, {^file, _}, []}] = M.__ets_tables__()
     end
 
-    test "w/ options" do
+    test "w/ opts" do
       name = :test
       file = __ENV__.file
       options = [read_concurrency: true, write_concurrency: :auto]
