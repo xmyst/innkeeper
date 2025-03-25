@@ -1,6 +1,6 @@
 defmodule InnkeeperTest do
   use ExUnit.Case
-  import TestMacroTools
+  import TestHelper
 
   doctest Innkeeper
 

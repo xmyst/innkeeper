@@ -1,6 +1,6 @@
 defmodule Innkeeper.KeeperTest do
   use ExUnit.Case
-  import TestMacroTools
+  import TestHelper
 
   @keeper_mod_spec {Innkeeper.Keeper, name: __MODULE__}
 

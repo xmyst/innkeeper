@@ -1,6 +1,6 @@
 ExUnit.start()
 
-defmodule TestMacroTools do
+defmodule TestHelper do
   defmacro compiler_options(options, do: block) do
     quote do
       orig_compiler_options = Code.compiler_options()
